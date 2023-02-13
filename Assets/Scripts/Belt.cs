@@ -13,6 +13,8 @@ public class Belt : MonoBehaviour
     public int speed = 0;
     public new string name;
 
+    int scantime = 0;
+
     new readonly Tag<DintPlcMapper, int> tag = new();
 
     void Start()
@@ -20,7 +22,6 @@ public class Belt : MonoBehaviour
         plctag.ForceExtractLibrary = false;
 
         var _plc = GameObject.Find("PLC").GetComponent<PLC>();
-        rb = GetComponentInChildren<Rigidbody>();
 
         tag.Name = name;
         tag.Gateway = _plc.Gateway;
@@ -28,9 +29,13 @@ public class Belt : MonoBehaviour
         tag.PlcType= _plc.PlcType;
         tag.Protocol= _plc.Protocol;
 
+        rb = GetComponentInChildren<Rigidbody>();
+
         startPos = rb.GetComponent<Transform>().transform.position;
 
-        InvokeRepeating(nameof(ScanTag), 0, 0.25f);
+        scantime = _plc.ScanTime;
+
+        InvokeRepeating(nameof(ScanTag), 0, (float)scantime/1000f);
     }
 
     // Update is called once per frame

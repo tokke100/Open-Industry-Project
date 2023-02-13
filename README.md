@@ -14,4 +14,4 @@ MicroLogix,
 Omron NX/NJ Series,
 Modbus TCP
 
-![Sorter Demo](https://user-images.githubusercontent.com/105675984/218565308-fa17ee37-f28d-47fb-a561-9b9acb9275c9.gif)
+[Sorter Demo.webm](https://user-images.githubusercontent.com/105675984/218566356-9a3afc98-d5ec-4489-9bbc-43c0bef056e2.webm)

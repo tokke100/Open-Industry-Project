@@ -6,10 +6,10 @@ The goal is to provide an open platform for developers to contribute to the crea
 
 Supported PLCs:
 
-ControlLogix
-Micro800/850
-PLC-5 
-SLC 500
-MicroLogix
-Omron NX/NJ Series
-Modbus TCP
+ControlLogix,
+Micro800/850,
+PLC-5 ,
+SLC 500,
+MicroLogix,
+Omron NX/NJ Series,
+Modbus TCP,

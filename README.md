@@ -12,4 +12,4 @@ PLC-5 ,
 SLC 500,
 MicroLogix,
 Omron NX/NJ Series,
-Modbus TCP,
+Modbus TCP

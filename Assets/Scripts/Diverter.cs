@@ -21,6 +21,8 @@ public class Diverter : MonoBehaviour
 
     new readonly Tag<SintPlcMapper, sbyte> tag = new();
 
+    Vector3 startPos = new();
+
     sbyte FireDivert = 0;
 
     bool divert = false;
@@ -44,6 +46,8 @@ public class Diverter : MonoBehaviour
         scanTime = _plc.ScanTime;
 
         rb = GetComponent<Rigidbody>();
+
+        startPos = transform.position;
 
         InvokeRepeating(nameof(ScanTag), 0, (float)scanTime/1000f);
     }
@@ -76,6 +80,7 @@ public class Diverter : MonoBehaviour
                 if (time > swingTime * 2)
                 {
                     rb.velocity = Vector3.zero;
+                    transform.position = startPos;
                     time = 0;
                     divert = false;
                     cycled = true;

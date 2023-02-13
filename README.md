@@ -22,7 +22,7 @@ Add a PLC object from the 'Assets' to the scene and fill in the script fields wi
 
 All equipment and devices come with their own script and fields that also need to be configured
 
-![image](https://user-images.githubusercontent.com/105675984/218574611-1fde706b-7b3d-4600-82a3-78ca6d27037d.png)
+![image](https://user-images.githubusercontent.com/105675984/218584052-5b67fdb5-4e44-461f-a5f4-87fe4ebe888d.png)
 
 ## Help Wanted
 

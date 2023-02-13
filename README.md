@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/105675984/218566921-1db171af-4f37-4fcc
 
 Clone the repository and select the project folder directly in Unity Hub
 
-Add a PLC object from the 'Assets' to the scene and fill in the script fields with the necessary data for your test bench. 
+Inside the Unity Editor add a PLC object from the 'Assets' folder to the scene and fill in the script fields with the necessary data for your test bench. 
 
 ![image](https://user-images.githubusercontent.com/105675984/218582555-4a450d03-8b2e-499c-b1ca-a4e286d686b8.png)
 

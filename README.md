@@ -8,12 +8,7 @@ Supported PLCs:
 
 ControlLogix,Micro800/850,PLC-5 ,SLC 500,MicroLogix,Omron NX/NJ Series,Modbus TCP
 
-## Help Wanted
-
-More equipment and devices,
-better models,
-better performance,
-remove the need to recompile scripts after running
+## Demo
 
 https://user-images.githubusercontent.com/105675984/218566921-1db171af-4f37-4fcc-874e-a8168c871ee3.mov
 
@@ -26,5 +21,12 @@ Add a PLC object from the 'Assets' to the scene and fill in the script fields wi
 All equipment and devices come with their own script and fields that also need to be configured
 
 ![image](https://user-images.githubusercontent.com/105675984/218574611-1fde706b-7b3d-4600-82a3-78ca6d27037d.png)
+
+## Help Wanted
+
+More equipment and devices,
+better models,
+better performance,
+remove the need to recompile scripts after running
 
 

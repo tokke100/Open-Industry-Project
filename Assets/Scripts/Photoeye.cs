@@ -1,52 +1,55 @@
 using libplctag.DataTypes;
 using libplctag;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using libplctag.NativeImport;
 using System.Threading.Tasks;
+using System;
+using Unity.VisualScripting;
 
 public class Photoeye : MonoBehaviour
 {
     new readonly Tag<SintPlcMapper, sbyte> tag = new();
-
-    public new string name;
-
+    public string tagName;
+    public float distance = 6.0f;
     int scanTime = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         plctag.ForceExtractLibrary = false;
 
         var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
-        tag.Name = name;
+        tag.Name = tagName;
         tag.Gateway = _plc.Gateway;
         tag.Path = _plc.Path;
         tag.PlcType = _plc.PlcType;
         tag.Protocol = _plc.Protocol;
+        tag.Timeout = TimeSpan.FromSeconds(1);
 
-        scanTime= _plc.ScanTime;
+        scanTime = _plc.ScanTime;
 
-        InvokeRepeating(nameof(ScanTag), 0, (float)scanTime/1000f);
+        try
+        {
+            InvokeRepeating(nameof(ScanTag), 0, (float)scanTime / 1000f);
+        }
+        catch (Exception)
+        {
+            Debug.LogError($"Failed to write to tag for object: {gameObject.name} check PLC object settings or Tag Name");
+        }
+
+
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out RaycastHit hit, 6))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out RaycastHit hit, distance))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
             tag.Value = 1;
-            //Debug.Log("Did Hit");
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 6, Color.red);
             tag.Value = 0;
-            //Debug.Log("Did not Hit");
         }
     }
 

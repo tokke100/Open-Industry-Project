@@ -14,10 +14,10 @@ public class Diverter : MonoBehaviour
 
     float time = 0;
 
-    public new string name;
+    public string tagName;
 
-    public float swingTime = 0;
-    public float swingSpeed = 0;
+    public float divertTime = 0;
+    public float divertSpeed = 0;
 
     new readonly Tag<SintPlcMapper, sbyte> tag = new();
 
@@ -37,7 +37,7 @@ public class Diverter : MonoBehaviour
 
         var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
-        tag.Name = name;
+        tag.Name = tagName;
         tag.Gateway = _plc.Gateway;
         tag.Path = _plc.Path;
         tag.PlcType = _plc.PlcType;
@@ -68,16 +68,16 @@ public class Diverter : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            if (time < swingTime)
+            if (time < divertTime)
             {
-                rb.velocity = Vector3.forward * swingSpeed;
+                rb.velocity = Vector3.forward * divertSpeed;
             }
             else
             {
 
-                rb.velocity = Vector3.back * swingSpeed;
+                rb.velocity = Vector3.back * divertSpeed;
 
-                if (time > swingTime * 2)
+                if (time > divertTime * 2)
                 {
                     rb.velocity = Vector3.zero;
                     transform.position = startPos;

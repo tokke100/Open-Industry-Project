@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add0fefeaa3feed48b59333adcd8545f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gateway: 72.90.143.198
+  Gateway: 192.168.1.1
   Path: 1,0
+  ScanTime: 0
   PlcType: 0
   Protocol: 0

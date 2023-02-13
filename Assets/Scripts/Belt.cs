@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 public class Belt : MonoBehaviour
 {
-    private Vector3 startPos = new();
-    private Rigidbody rb;
-    public int speed = 0;
-    public new string name;
-
+    public string tagName;
+    Vector3 startPos = new();
+    Rigidbody rb;
+    int speed = 0;
     int scantime = 0;
-
     new readonly Tag<DintPlcMapper, int> tag = new();
 
     void Start()
@@ -23,22 +21,21 @@ public class Belt : MonoBehaviour
 
         var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
-        tag.Name = name;
+        tag.Name = tagName;
         tag.Gateway = _plc.Gateway;
         tag.Path= _plc.Path;
         tag.PlcType= _plc.PlcType;
         tag.Protocol= _plc.Protocol;
+        tag.Timeout = TimeSpan.FromSeconds(1);
+
+        scantime = _plc.ScanTime;
 
         rb = GetComponentInChildren<Rigidbody>();
 
         startPos = rb.GetComponent<Transform>().transform.position;
 
-        scantime = _plc.ScanTime;
-
         InvokeRepeating(nameof(ScanTag), 0, (float)scantime/1000f);
     }
-
-    // Update is called once per frame
     void Update()
     {
         rb.velocity = rb.GetComponent<Transform>().transform.TransformDirection(Vector3.left) * speed;
@@ -48,6 +45,14 @@ public class Belt : MonoBehaviour
 
     async Task ScanTag()
     {
-        speed = await tag.ReadAsync();
+        try
+        {
+            speed = await tag.ReadAsync();
+        }
+        catch (Exception)
+        {
+            CancelInvoke(nameof(ScanTag));
+            Debug.LogError($"Failed to read tag for object: {gameObject.name} check PLC object settings or Tag Name");
+        }
     }
 }

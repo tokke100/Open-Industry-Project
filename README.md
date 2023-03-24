@@ -10,13 +10,13 @@ ControlLogix,Micro800/850,PLC-5 ,SLC 500,MicroLogix,Omron NX/NJ Series,Modbus TC
 
 ## Demo
 
-https://user-images.githubusercontent.com/105675984/218566921-1db171af-4f37-4fcc-874e-a8168c871ee3.mov
+https://user-images.githubusercontent.com/105675984/227573200-858d8332-53b7-428d-a843-525b9a7223eb.mp4
 
 ## Getting Started
 
 Clone the repository and select the project folder directly in Unity Hub
 
-Add a PLC object from the 'Assets' to the scene and fill in the script fields with the necessary data for your test bench. 
+Inside the Unity Editor add a PLC object from the 'Assets' folder to the scene and fill in the script fields with the necessary data for your test bench. 
 
 ![image](https://user-images.githubusercontent.com/105675984/218582555-4a450d03-8b2e-499c-b1ca-a4e286d686b8.png)
 
@@ -29,6 +29,7 @@ All equipment and devices come with their own script and fields that also need t
 More equipment and devices,
 better models,
 better performance,
+better exception handling,
 remove the need to recompile scripts after running
 
 

@@ -8,33 +8,37 @@ using System.Threading.Tasks;
 
 public class Belt : MonoBehaviour
 {
+    public bool enablePLC = true;
     public string tagName;
+    public int speed = 0;
     Vector3 startPos = new();
     Rigidbody rb;
-    int speed = 0;
     int scantime = 0;
     new readonly Tag<DintPlcMapper, int> tag = new();
 
     void Start()
     {
-        plctag.ForceExtractLibrary = false;
+        if (enablePLC)
+        {
+            plctag.ForceExtractLibrary = false;
 
-        var _plc = GameObject.Find("PLC").GetComponent<PLC>();
+            var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
-        tag.Name = tagName;
-        tag.Gateway = _plc.Gateway;
-        tag.Path= _plc.Path;
-        tag.PlcType= _plc.PlcType;
-        tag.Protocol= _plc.Protocol;
-        tag.Timeout = TimeSpan.FromSeconds(1);
+            tag.Name = tagName;
+            tag.Gateway = _plc.Gateway;
+            tag.Path = _plc.Path;
+            tag.PlcType = _plc.PlcType;
+            tag.Protocol = _plc.Protocol;
+            tag.Timeout = TimeSpan.FromSeconds(1);
 
-        scantime = _plc.ScanTime;
+            scantime = _plc.ScanTime;
+
+            InvokeRepeating(nameof(ScanTag), 0, (float)scantime / 1000f);
+        }
 
         rb = GetComponentInChildren<Rigidbody>();
 
         startPos = rb.GetComponent<Transform>().transform.position;
-
-        InvokeRepeating(nameof(ScanTag), 0, (float)scantime/1000f);
     }
     void Update()
     {

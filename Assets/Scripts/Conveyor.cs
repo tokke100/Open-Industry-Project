@@ -6,7 +6,7 @@ using System;
 using UnityEditor;
 using System.Threading.Tasks;
 
-public class Belt : MonoBehaviour
+public class Conveyor : MonoBehaviour
 {
     public bool enablePLC = true;
     public string tagName;
@@ -36,7 +36,7 @@ public class Belt : MonoBehaviour
             InvokeRepeating(nameof(ScanTag), 0, (float)scantime / 1000f);
         }
 
-        rb = GetComponentInChildren<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
         startPos = rb.GetComponent<Transform>().transform.position;
     }

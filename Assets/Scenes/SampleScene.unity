@@ -266,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852876024739102829, guid: eebc5157554b9004ea55d8c04b60020c, type: 3}
       propertyPath: Gateway
-      value: 72.90.143.198
+      value: 192.168.1.11
       objectReference: {fileID: 0}
     - target: {fileID: 4852876024739102829, guid: eebc5157554b9004ea55d8c04b60020c, type: 3}
       propertyPath: ScanTime
@@ -523,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194591764442845282, guid: d3802868c7a0d7144a6b14d626776620, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 22.864
       objectReference: {fileID: 0}
     - target: {fileID: 9194591764442845282, guid: d3802868c7a0d7144a6b14d626776620, type: 3}
       propertyPath: m_LocalPosition.x

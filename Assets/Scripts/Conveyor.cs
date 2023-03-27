@@ -46,7 +46,7 @@ public class Conveyor : MonoBehaviour
         rb.GetComponent<Transform>().transform.position = startPos;
 
     }
-
+    
     async Task ScanTag()
     {
         try

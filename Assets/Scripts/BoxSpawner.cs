@@ -20,6 +20,6 @@ public class BoxSpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(myPrefab,transform.position, Quaternion.identity);
+        Instantiate(myPrefab,transform.position, myPrefab.transform.rotation);
     }
 }

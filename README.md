@@ -1,6 +1,6 @@
 # OpenIndustryProject
 
-Free and Open-source PLC driven warehouse/manufacturing simulation made with Unity and [libplctag.NET](https://github.com/libplctag/libplctag.NET). 
+Free and Open-source PLC driven warehouse/manufacturing simulation made with [https://unity.com/](Unity) and [libplctag.NET](https://github.com/libplctag/libplctag.NET). 
 
 The goal is to provide an open platform for developers to contribute to the creation of virtual industrial equipment/devices and for engineers to be able to test their ideas or simply educate themselves using a real PLC.
 

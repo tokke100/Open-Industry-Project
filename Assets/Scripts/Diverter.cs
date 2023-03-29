@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using libplctag.NativeImport;
 using System.Threading.Tasks;
+using System;
 
 public class Diverter : MonoBehaviour
 {
-
+    public bool enablePLC = true;
 
     Rigidbody rb;
 
@@ -16,14 +17,13 @@ public class Diverter : MonoBehaviour
 
     public string tagName;
 
+    public bool fireDivert = false;
     public float divertTime = 0;
     public float divertSpeed = 0;
 
     new readonly Tag<SintPlcMapper, sbyte> tag = new();
 
     Vector3 startPos = new();
-
-    sbyte FireDivert = 0;
 
     bool divert = false;
     bool cycled = false;
@@ -33,33 +33,36 @@ public class Diverter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        plctag.ForceExtractLibrary = false;
+        if (enablePLC)
+        {
+            plctag.ForceExtractLibrary = false;
 
-        var _plc = GameObject.Find("PLC").GetComponent<PLC>();
+            var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
-        tag.Name = tagName;
-        tag.Gateway = _plc.Gateway;
-        tag.Path = _plc.Path;
-        tag.PlcType = _plc.PlcType;
-        tag.Protocol = _plc.Protocol;
+            tag.Name = tagName;
+            tag.Gateway = _plc.Gateway;
+            tag.Path = _plc.Path;
+            tag.PlcType = _plc.PlcType;
+            tag.Protocol = _plc.Protocol;
 
-        scanTime = _plc.ScanTime;
+            scanTime = _plc.ScanTime;
+
+            InvokeRepeating(nameof(ScanTag), 0, (float)scanTime / 1000f);
+        }
 
         rb = GetComponent<Rigidbody>();
 
         startPos = transform.position;
-
-        InvokeRepeating(nameof(ScanTag), 0, (float)scanTime/1000f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(FireDivert == 1 && !cycled)
+        if(fireDivert && !cycled)
         {
             divert= true;
         }
-        else if (FireDivert == 0)
+        else if (fireDivert == false)
         {
             cycled = false;
         }
@@ -92,7 +95,7 @@ public class Diverter : MonoBehaviour
 
     async Task ScanTag()
     {
-        FireDivert = await tag.ReadAsync();
+        fireDivert = Convert.ToBoolean(await tag.ReadAsync());
     }
 
 }

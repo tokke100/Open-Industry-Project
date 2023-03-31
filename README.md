@@ -8,15 +8,12 @@ Supported PLCs:
 
 ControlLogix,Micro800/850,PLC-5 ,SLC 500,MicroLogix,Omron NX/NJ Series,Modbus TCP
 
-## New Conveyor and Box Models!
-
-![scale](https://user-images.githubusercontent.com/105675984/228063593-c49b5f93-1ecf-47da-bb42-fd077a8112ce.gif)
-![box](https://user-images.githubusercontent.com/105675984/228373219-b74487d8-7b1b-4008-a998-6d3e4f1197f7.gif)
+## Demo
 
 
-## Old demo without new conveyor
 
-https://user-images.githubusercontent.com/105675984/227573200-858d8332-53b7-428d-a843-525b9a7223eb.mp4
+https://user-images.githubusercontent.com/105675984/229177437-8d8eda82-6ae5-4cdd-9550-9d69d776a916.mp4
+
 
 
 ## Getting Started

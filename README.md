@@ -2,7 +2,7 @@
 
 Free and Open-source PLC driven warehouse/manufacturing simulation made with [Unity](https://unity.com/) and [libplctag.NET](https://github.com/libplctag/libplctag.NET). 
 
-The goal is to provide an open platform for developers to contribute to the creation of virtual industrial equipment/devices and for engineers to be able to test their ideas or simply educate themselves using a real PLC.
+The goal is to provide an open platform for developers to contribute to the creation of virtual industrial equipment/devices and for people to be able to test their ideas or simply educate themselves using a real PLC.
 
 Supported PLCs:
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class Conveyor : MonoBehaviour
 {
-    public bool enablePLC = true;
+    public bool enablePLC = false;
     public string tagName;
     public int speed = 0;
     Vector3 startPos = new();

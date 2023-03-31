@@ -49,8 +49,9 @@ public class Diverter : MonoBehaviour
 
             InvokeRepeating(nameof(ScanTag), 0, (float)scanTime / 1000f);
         }
-
-        rb = GetComponent<Rigidbody>();
+        
+        //Set new rigidbody
+        rb = GetComponent<DiverterAnimator>().GetDiverterRigidbody();
 
         startPos = transform.position;
     }
@@ -60,6 +61,8 @@ public class Diverter : MonoBehaviour
     {
         if(fireDivert && !cycled)
         {
+            //This is manual testing
+            fireDivert = false;
             divert= true;
         }
         else if (fireDivert == false)

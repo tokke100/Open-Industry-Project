@@ -24,7 +24,7 @@ https://user-images.githubusercontent.com/105675984/229177437-8d8eda82-6ae5-4cdd
 
 Clone the repository and select the project folder directly in Unity Hub
 
-The intent is to utilize the abilities of the Unity Editor itself to instantitate equiptment and design your systems. There objects can be resized, moved around, and adjusted in real-time while the scene is running. It is possible if desired to build your scene into an executable, which can be then used as presentation material. 
+The intent is to utilize the abilities of the Unity Editor itself to instantitate equiptment and design your systems. There, objects can be resized, moved around, and adjusted in real-time while the scene is running. It is possible if desired to build your scene into an executable, which can be then used as presentation material. 
 
 Inside the Unity Editor add a PLC object from the 'Assets' folder to the scene and fill in the script fields with the necessary data for your test bench. 
 

@@ -10,11 +10,11 @@ ControlLogix,Micro800/850,PLC-5 ,SLC 500,MicroLogix,Omron NX/NJ Series,Modbus TC
 
 ## Demo
 
-
-
 https://user-images.githubusercontent.com/105675984/229177437-8d8eda82-6ae5-4cdd-9550-9d69d776a916.mp4
 
+## Scaleable Objects 
 
+![scale](https://user-images.githubusercontent.com/105675984/228063593-c49b5f93-1ecf-47da-bb42-fd077a8112ce.gif)
 
 ## Getting Started
 

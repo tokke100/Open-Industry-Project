@@ -59,6 +59,11 @@ public class Diverter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!divert && startPos != transform.position)
+        {
+            startPos = transform.position;
+        }
+
         if(fireDivert && !cycled)
         {
             //This is manual testing

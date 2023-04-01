@@ -37,9 +37,7 @@ All equipment and devices come with their own script and fields that also need t
 ## Help Wanted
 
 More equipment and devices,
-better models,
-better performance,
 better exception handling,
-remove the need to recompile scripts after running
+review code
 
 

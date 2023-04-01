@@ -15,7 +15,7 @@ public class Photoeye : MonoBehaviour
 
     void Start()
     {
-        plctag.ForceExtractLibrary = false;
+        try { plctag.ForceExtractLibrary = false; } catch { };
 
         var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 

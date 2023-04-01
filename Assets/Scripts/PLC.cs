@@ -25,7 +25,7 @@ public class PLC : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+        //UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
     }
 
 }

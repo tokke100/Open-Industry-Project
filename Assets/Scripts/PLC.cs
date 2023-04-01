@@ -11,6 +11,18 @@ public class PLC : MonoBehaviour
     public PlcType PlcType = new();
 
     public Protocol Protocol = new();
+
+    private void Awake()
+    {
+#if UNITY_EDITOR
+
+        UnityEditor.SceneView.FocusWindowIfItsOpen(typeof(UnityEditor.SceneView));
+
+#endif
+    }
+
+
+
     private void OnApplicationQuit()
     {
         UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();

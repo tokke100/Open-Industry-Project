@@ -13,7 +13,7 @@ public class PLC : MonoBehaviour
     public Protocol Protocol = new();
     private void OnApplicationQuit()
     {
-        UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+        //UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
     }
 
 }

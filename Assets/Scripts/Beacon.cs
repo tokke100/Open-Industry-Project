@@ -19,7 +19,8 @@ public class Beacon : MonoBehaviour
     {
         if (enablePLC)
         {
-            plctag.ForceExtractLibrary = false;
+            try { plctag.ForceExtractLibrary = false; } catch { };
+            
 
             var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 

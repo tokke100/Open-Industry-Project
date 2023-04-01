@@ -15,12 +15,13 @@ public class Conveyor : MonoBehaviour
     Rigidbody rb;
     int scantime = 0;
     new readonly Tag<DintPlcMapper, int> tag = new();
+    int failCount = 0;
 
     void Start()
     {
         if (enablePLC)
         {
-            plctag.ForceExtractLibrary = false;
+            try { plctag.ForceExtractLibrary = false; } catch { };
 
             var _plc = GameObject.Find("PLC").GetComponent<PLC>();
 
@@ -29,7 +30,7 @@ public class Conveyor : MonoBehaviour
             tag.Path = _plc.Path;
             tag.PlcType = _plc.PlcType;
             tag.Protocol = _plc.Protocol;
-            tag.Timeout = TimeSpan.FromSeconds(1);
+            tag.Timeout = TimeSpan.FromSeconds(5);
 
             scantime = _plc.ScanTime;
 
@@ -53,10 +54,14 @@ public class Conveyor : MonoBehaviour
         {
             speed = await tag.ReadAsync();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            CancelInvoke(nameof(ScanTag));
-            Debug.LogError($"Failed to read tag for object: {gameObject.name} check PLC object settings or Tag Name");
+            if(failCount > 0)
+            {
+                CancelInvoke(nameof(ScanTag));
+                Debug.LogError($"Failed to read tag for object: {gameObject.name} check PLC object settings or Tag Name");
+            }
+            failCount++;
         }
     }
 }

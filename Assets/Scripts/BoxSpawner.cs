@@ -8,6 +8,11 @@ public class BoxSpawner : MonoBehaviour
 
     float period = 0;
 
+    private void Start()
+    {
+        period = time + 1;
+    }
+
     void Update()
     {
         if (period > time)

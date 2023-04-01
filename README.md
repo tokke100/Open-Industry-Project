@@ -38,6 +38,8 @@ All equipment and devices come with their own script and fields that also need t
 
 More equipment and devices,
 better exception handling,
-review code
+review code,
+documentation,
+training videos?
 
 

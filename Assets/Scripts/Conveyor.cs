@@ -54,7 +54,7 @@ public class Conveyor : MonoBehaviour
         {
             speed = await tag.ReadAsync();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             if(failCount > 0)
             {

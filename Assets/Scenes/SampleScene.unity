@@ -221,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852876024739102829, guid: eebc5157554b9004ea55d8c04b60020c, type: 3}
       propertyPath: Gateway
-      value: 71.172.231.121
+      value: 192.168.1.11
       objectReference: {fileID: 0}
     - target: {fileID: 4852876024739102829, guid: eebc5157554b9004ea55d8c04b60020c, type: 3}
       propertyPath: ScanTime

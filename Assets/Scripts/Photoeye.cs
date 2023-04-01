@@ -48,7 +48,7 @@ public class Photoeye : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 6, Color.red);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * distance, Color.red);
             tag.Value = 0;
         }
     }

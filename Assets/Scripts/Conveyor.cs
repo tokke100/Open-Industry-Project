@@ -5,6 +5,7 @@ using libplctag.NativeImport;
 using System;
 using UnityEditor;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 public class Conveyor : MonoBehaviour
 {
@@ -41,21 +42,26 @@ public class Conveyor : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         startPos = transform.position;
+        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
     }
     void Update()
     {
         if (conveyorRunning)
         {
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             rb.velocity = transform.TransformDirection(Vector3.left) * speed;
             transform.position = startPos;
         }
         else
         {
-            if(rb.velocity != Vector3.zero)
+            if(rb.velocity != Vector3.zero && rb.velocity.y == 0)
             {
+                rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
                 transform.position = startPos;
                 rb.velocity = Vector3.zero;
             }
+            //when you stop, keep updating startPos for elevator
+            startPos = transform.position;
         }
     }
     

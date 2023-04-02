@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ConvTextureMover : MonoBehaviour
@@ -11,7 +12,8 @@ public class ConvTextureMover : MonoBehaviour
 
     private void Start()
     {
-        objectRenderer = GetComponent<MeshRenderer>();
+        Transform conveyor = transform.Find("Conveyor");
+        objectRenderer = conveyor.GetComponent<MeshRenderer>();
         _conveyor = GetComponent<Conveyor>();
     }
 
@@ -43,7 +45,7 @@ public class ConvTextureMover : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Clamp(transform.localScale.x, 1, 1000f), 1, transform.localScale.z);
         foreach (var convEnd in convEnds)
         {
-            convEnd.transform.localScale = new Vector3(1f / convEnd.transform.parent.localScale.x, 1f, 1f);
+            convEnd.transform.localScale = new Vector3(1f / transform.localScale.x, 1f, 1f);
         }
     }
 

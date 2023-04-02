@@ -4,7 +4,7 @@ Free and Open-source PLC driven warehouse/manufacturing simulation made with [Un
 
 The goal is to provide an open platform for developers to contribute to the creation of virtual industrial equipment/devices and for people to be able to test their ideas or simply educate themselves using a real PLC.
 
-Join our discord: [Open Industry Project](https://discord.gg/Jzrb9beS)
+Join our discord group: [Open Industry Project](https://discord.gg/Jzrb9beS)
 
 Supported PLCs:
 

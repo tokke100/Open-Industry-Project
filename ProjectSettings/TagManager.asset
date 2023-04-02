@@ -12,8 +12,8 @@ TagManager:
   - InternalCollision
   - Water
   - UI
-  - 
-  - 
+  - Conveyors
+  - MoveableObjects
   - 
   - 
   - 

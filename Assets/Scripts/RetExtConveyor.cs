@@ -51,24 +51,32 @@ public class RetExtConveyor : MonoBehaviour
         if (Extend)
         {
             moveTime += 1f * Time.deltaTime;
-            transform.localScale = new Vector3(Mathf.Lerp(retractSize, ExtendSize, moveTime), 1f, 1f);
-            if(moveTime >= 1)
+            if (moveTime >= 1 || transform.localScale.x >= ExtendSize)
             {
                 transform.localScale = new Vector3(ExtendSize, 1f, 1f);
                 Extend = false;
                 moveTime = 0;
             }
+            else
+            {
+                transform.localScale = new Vector3(Mathf.Lerp(retractSize, ExtendSize, moveTime), 1f, 1f);
+            }
+            
+            
         }
 
         if (retract)
         {
             moveTime += 1f * Time.deltaTime;
-            transform.localScale = new Vector3(Mathf.Lerp(ExtendSize, retractSize, moveTime), 1f, 1f);
-            if (moveTime >= 1)
+            if (moveTime >= 1 || transform.localScale.x <= retractSize)
             {
                 transform.localScale = new Vector3(retractSize, 1f, 1f);
                 retract = false;
                 moveTime = 0;
+            }
+            else
+            {
+                transform.localScale = new Vector3(Mathf.Lerp(ExtendSize, retractSize, moveTime), 1f, 1f);
             }
         }
     }

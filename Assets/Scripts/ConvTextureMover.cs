@@ -29,8 +29,18 @@ public class ConvTextureMover : MonoBehaviour
             {
                 FlipConveyor();
             }
-            if(!flipped) convSpeed += -_conveyor.speed * Time.deltaTime;
-            else convSpeed += _conveyor.speed * Time.deltaTime;
+            if (_conveyor.conveyorRunning)
+            {
+                if (!flipped)
+                {
+                    convSpeed += -_conveyor.speed * Time.deltaTime;
+                }
+                else
+                {
+                    convSpeed += _conveyor.speed * Time.deltaTime;
+                }
+            }
+            
         }
         
         objectRenderer.materials[0].mainTextureOffset = new Vector2(0, convSpeed);

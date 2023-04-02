@@ -1,23 +1,30 @@
 using UnityEngine;
 using libplctag;
 using libplctag.DataTypes;
-using libplctag.NativeImport; 
+using libplctag.NativeImport;
 using System;
 using UnityEditor;
 using System.Threading.Tasks;
 
-public class Conveyor : MonoBehaviour
+public class RetExtConveyor : MonoBehaviour
 {
+
+    public bool Extend;
+    public bool retract;
+    public float ExtendSize;
+    public float retractSize;
+
     public bool enablePLC = false;
     public string tagName;
-    public int speed = 0;
-    Vector3 startPos = new();
-    Rigidbody rb;
+    public int speed;
     int scantime = 0;
     new readonly Tag<DintPlcMapper, int> tag = new();
     int failCount = 0;
 
-    void Start()
+    float moveTime = 0.0f;
+
+
+    private void Start()
     {
         if (enablePLC)
         {
@@ -36,18 +43,36 @@ public class Conveyor : MonoBehaviour
 
             InvokeRepeating(nameof(ScanTag), 0, (float)scantime / 1000f);
         }
-
-        rb = GetComponent<Rigidbody>();
-
-        startPos = transform.position;
     }
+
+    // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.TransformDirection(Vector3.left) * speed;
-        transform.position = startPos;
+        if (Extend)
+        {
+            moveTime += 1f * Time.deltaTime;
+            transform.localScale = new Vector3(Mathf.Lerp(retractSize, ExtendSize, moveTime), 1f, 1f);
+            if(moveTime >= 1)
+            {
+                transform.localScale = new Vector3(ExtendSize, 1f, 1f);
+                Extend = false;
+                moveTime = 0;
+            }
+        }
 
+        if (retract)
+        {
+            moveTime += 1f * Time.deltaTime;
+            transform.localScale = new Vector3(Mathf.Lerp(ExtendSize, retractSize, moveTime), 1f, 1f);
+            if (moveTime >= 1)
+            {
+                transform.localScale = new Vector3(retractSize, 1f, 1f);
+                retract = false;
+                moveTime = 0;
+            }
+        }
     }
-    
+
     async Task ScanTag()
     {
         try
@@ -56,7 +81,7 @@ public class Conveyor : MonoBehaviour
         }
         catch (Exception)
         {
-            if(failCount > 0)
+            if (failCount > 0)
             {
                 CancelInvoke(nameof(ScanTag));
                 Debug.LogError($"Failed to read tag for object: {gameObject.name} check PLC object settings or Tag Name");

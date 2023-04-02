@@ -16,6 +16,7 @@ public class Conveyor : MonoBehaviour
     int scantime = 0;
     new readonly Tag<DintPlcMapper, int> tag = new();
     int failCount = 0;
+    public bool conveyorRunning = false;
 
     void Start()
     {
@@ -43,9 +44,19 @@ public class Conveyor : MonoBehaviour
     }
     void Update()
     {
-        rb.velocity = transform.TransformDirection(Vector3.left) * speed;
-        transform.position = startPos;
-
+        if (conveyorRunning)
+        {
+            rb.velocity = transform.TransformDirection(Vector3.left) * speed;
+            transform.position = startPos;
+        }
+        else
+        {
+            if(rb.velocity != Vector3.zero)
+            {
+                transform.position = startPos;
+                rb.velocity = Vector3.zero;
+            }
+        }
     }
     
     async Task ScanTag()

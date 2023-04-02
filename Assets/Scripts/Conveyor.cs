@@ -39,12 +39,12 @@ public class Conveyor : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
-        startPos = rb.GetComponent<Transform>().transform.position;
+        startPos = transform.position;
     }
     void Update()
     {
-        rb.velocity = rb.GetComponent<Transform>().transform.TransformDirection(Vector3.left) * speed;
-        rb.GetComponent<Transform>().transform.position = startPos;
+        rb.velocity = transform.TransformDirection(Vector3.left) * speed;
+        transform.position = startPos;
 
     }
     

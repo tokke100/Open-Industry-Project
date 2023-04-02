@@ -12,6 +12,9 @@ public class ElevatorConveyor : MonoBehaviour
     public float upPos = 10f;
     public float downPos = 0f;
 
+    public float upSpeed = 5f;
+    public float downSpeed = 5f;
+
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -30,7 +33,7 @@ public class ElevatorConveyor : MonoBehaviour
             if (moveUp)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
-                rb.velocity = Vector3.up * 5f;
+                rb.velocity = Vector3.up * upSpeed;
                 if (transform.position.y >= upPos)
                 {
                     moveUp = false;
@@ -43,7 +46,7 @@ public class ElevatorConveyor : MonoBehaviour
             if (moveDown)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
-                rb.velocity = -Vector3.up * 5f;
+                rb.velocity = -Vector3.up * downSpeed;
                 if (transform.position.y <= downPos)
                 {
                     moveDown = false;

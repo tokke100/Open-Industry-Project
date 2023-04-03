@@ -8,7 +8,7 @@ public class ConvTextureMoverEditor : Editor
 {
     void OnSceneGUI()
     {
-        DrawDefaultInspector();
+        //DrawDefaultInspector();
         var player = (ConvTextureMover)target;
         player.RemakeMesh();
     }

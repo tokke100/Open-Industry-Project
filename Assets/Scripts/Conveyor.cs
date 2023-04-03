@@ -18,6 +18,10 @@ public class Conveyor : MonoBehaviour
     public bool conveyorRunning = false;
     public SiemensPLC plc;
 
+    public string speedVariable;
+    public string enableVariable;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,14 +36,14 @@ public class Conveyor : MonoBehaviour
     }
     void Update()
     {
-        conveyorRunning = plc.boolDict["conv1"];
+        conveyorRunning = plc.boolInputDict[enableVariable];
 
 
         if (conveyorRunning)
         {
             
             rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-            rb.velocity = transform.TransformDirection(Vector3.left) * speed;
+            rb.velocity = transform.TransformDirection(Vector3.left) * plc.floatInputDict[speedVariable];
             transform.position = startPos;
         }
         else

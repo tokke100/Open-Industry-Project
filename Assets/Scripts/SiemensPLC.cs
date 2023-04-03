@@ -17,6 +17,7 @@ public class SiemensPLC : MonoBehaviour
     private float t = 0f;
     public bool[] input;
     public bool[] output;
+    public float[] floatInput;
 
     BitArray biArr = new BitArray(12);
     private byte[] outByte;
@@ -26,8 +27,11 @@ public class SiemensPLC : MonoBehaviour
     private bool closing = false;
 
     public List<String> InputboolVars;
+    public List<String> InputFloatVars;
 
-    public Dictionary<string, bool> boolDict = new Dictionary<string, bool>();
+    public Dictionary<string, bool> boolInputDict = new Dictionary<string, bool>();
+    public Dictionary<string, bool> boolOutputDict = new Dictionary<string, bool>();
+    public Dictionary<string, float> floatInputDict = new Dictionary<string, float>();
 
     void Start()
     {
@@ -36,7 +40,12 @@ public class SiemensPLC : MonoBehaviour
 
         foreach(var v in InputboolVars)
         {
-            boolDict.Add(v, false);
+            boolInputDict.Add(v, false);
+        }
+
+        foreach (var v in InputFloatVars)
+        {
+            floatInputDict.Add(v, 0.0f);
         }
     }
 
@@ -57,7 +66,6 @@ public class SiemensPLC : MonoBehaviour
                 writingData = true;
                 writeData(outByte);
             }
- 
             t = 0f;
         }
         
@@ -100,16 +108,29 @@ public class SiemensPLC : MonoBehaviour
 
     async void readData()
     {
-        await Task.Run(() => { 
+        await Task.Run(() => {
             biArr = (BitArray)plc.Read(DataType.DataBlock, 1, 0, VarType.Bit, 12);
             for (var i = 0; i < input.Length; i++)
             {
-                if(i < boolDict.Count)
+                if(i < boolInputDict.Count)
                 {
-                    boolDict[boolDict.ElementAt(i).Key] = biArr[i];
+                    boolInputDict[boolInputDict.ElementAt(i).Key] = biArr[i];
                 }
                 input[i] = biArr[i];
             }
+            var floats = (Single[])plc.Read(DataType.DataBlock, 1, 4, VarType.Real, 15);
+            for (var i = 0; i < floatInput.Length; i++)
+            {
+                if (i < floatInputDict.Count)
+                {
+                    floatInputDict[floatInputDict.ElementAt(i).Key] = floats[i];
+                    Debug.Log(floatInputDict.ElementAt(i));
+                }
+                floatInput[i] = floats[i];
+            }
+
+
+
 
         });
         readingData = false;

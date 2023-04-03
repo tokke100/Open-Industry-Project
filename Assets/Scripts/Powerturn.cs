@@ -5,6 +5,8 @@ using UnityEngine;
 public class Powerturn : MonoBehaviour
 {
     Rigidbody rb;
+
+    public float rotationSpeed = 1.0f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -12,6 +14,6 @@ public class Powerturn : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.angularVelocity = transform.TransformDirection(Vector3.up) * 1;
+        rb.angularVelocity = transform.TransformDirection(Vector3.up) * rotationSpeed;
     }
 }

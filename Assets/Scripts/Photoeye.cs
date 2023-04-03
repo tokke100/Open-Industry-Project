@@ -11,33 +11,16 @@ public class Photoeye : MonoBehaviour
     new readonly Tag<SintPlcMapper, sbyte> tag = new();
     public string tagName;
     public float distance = 6.0f;
-    int scanTime = 0;
+
+    public SiemensPLC plc;
 
     void Start()
     {
-        try { plctag.ForceExtractLibrary = false; } catch { };
-
-        var _plc = GameObject.Find("PLC").GetComponent<PLC>();
-
-        tag.Name = tagName;
-        tag.Gateway = _plc.Gateway;
-        tag.Path = _plc.Path;
-        tag.PlcType = _plc.PlcType;
-        tag.Protocol = _plc.Protocol;
-        tag.Timeout = TimeSpan.FromSeconds(1);
-
-        scanTime = _plc.ScanTime;
-
-        try
+        if (plc == null)
         {
-            InvokeRepeating(nameof(ScanTag), 0, (float)scanTime / 1000f);
+            plc = GameObject.Find("SiemensPLC").GetComponent<SiemensPLC>();
         }
-        catch (Exception)
-        {
-            Debug.LogError($"Failed to write to tag for object: {gameObject.name} check PLC object settings or Tag Name");
-        }
-
-
+        
     }
     void Update()
     {
@@ -45,16 +28,13 @@ public class Photoeye : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
             tag.Value = 1;
+            plc.output[0] = true;
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * distance, Color.red);
             tag.Value = 0;
+            plc.output[0] = false;
         }
-    }
-
-    async Task ScanTag()
-    {
-        await tag.WriteAsync();
     }
 }

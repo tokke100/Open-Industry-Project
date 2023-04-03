@@ -27,7 +27,7 @@ public class SiemensPLC : MonoBehaviour
 
     public List<String> InputboolVars;
 
-    private Dictionary<string, bool> boolDict = new Dictionary<string, bool>();
+    public Dictionary<string, bool> boolDict = new Dictionary<string, bool>();
 
     void Start()
     {
@@ -106,7 +106,7 @@ public class SiemensPLC : MonoBehaviour
             {
                 if(i < boolDict.Count)
                 {
-                    boolDict[boolDict.ElementAt(i).Key] = true;
+                    boolDict[boolDict.ElementAt(i).Key] = biArr[i];
                 }
                 input[i] = biArr[i];
             }

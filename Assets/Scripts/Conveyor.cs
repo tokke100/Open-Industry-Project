@@ -32,7 +32,7 @@ public class Conveyor : MonoBehaviour
     }
     void Update()
     {
-        conveyorRunning = plc.input[1];
+        conveyorRunning = plc.boolDict["conv1"];
 
 
         if (conveyorRunning)
